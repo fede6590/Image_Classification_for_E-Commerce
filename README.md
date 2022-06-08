@@ -8,19 +8,19 @@ You can use `Docker` to easily install all the needed packages and libraries. Tw
 - **CPU:**
 
 ```bash
-$ docker build -t s04_project -f docker/Dockerfile .
+$ docker build -t s05_project -f docker/Dockerfile .
 ```
 
 - **GPU:**
 
 ```bash
-$ docker build -t s04_project -f docker/Dockerfile_gpu .
+$ docker build -t s05_project -f docker/Dockerfile_gpu .
 ```
 
 ### Run Docker
 
 ```bash
-$ docker run --rm --net host --gpus all -it \
+$ docker run --rm --net host -it \
     -v $(pwd):/home/app/src \
     --workdir /home/app/src \
     s04_project \
