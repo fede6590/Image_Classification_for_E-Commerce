@@ -23,7 +23,15 @@ $ docker build -t s05_project -f docker/Dockerfile_gpu .
 $ docker run --rm --net host -it \
     -v $(pwd):/home/app/src \
     --workdir /home/app/src \
-    s04_project \
+    s05_project \
+    bash
+```
+
+```bash
+$ docker run --rm --net host --gpus all -it \
+    -v $(pwd):/home/app/src \
+    --workdir /home/app/src \
+    s05_project \
     bash
 ```
 
