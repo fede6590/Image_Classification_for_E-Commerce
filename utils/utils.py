@@ -1,5 +1,5 @@
 import os
-
+import yaml
 
 def validate_config(config):
     """
@@ -39,7 +39,11 @@ def load_config(config_file_path):
     """
     # TODO
     # Load config here and assign to `config` variable
-    config = None
+    with open('config_file_path', 'r') as stream:
+        try:
+            config = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
 
     # Don't remove this as will help you doing some basic checks on config
     # content

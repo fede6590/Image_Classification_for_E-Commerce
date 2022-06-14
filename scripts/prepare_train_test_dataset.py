@@ -1,6 +1,3 @@
-import os
-import pandas
-
 """
 This script will be used to separate and copy images coming from
 `car_ims.tgz` (extract the .tgz content first) between `train` and `test`
@@ -36,6 +33,8 @@ The resulting directory structure should look like this:
     │   │   │   ├── ...
 """
 import argparse
+import os
+import pandas as pd
 
 
 def parse_args():
@@ -91,7 +90,7 @@ def main(data_folder, labels, output_data_folder):
     #   3. Copy the image to the new folder structure. We recommend you to
     #      use `os.link()` to avoid wasting disk space with duplicated files
     # TODO
-    labels = pandas.read_csv(labels)
+    labels = pd.read_csv(labels)
     for _, img in labels.iterrows():
 
         path = os.path.join(img["subset"], img["class"])
