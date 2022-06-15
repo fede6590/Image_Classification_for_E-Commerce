@@ -38,5 +38,5 @@ with open('data/car_dataset_labels.csv', 'wb') as data:
     bucket.download_fileobj('training-datasets/car_dataset_labels.csv', data)
 
 # upload a file
-with open('sample.png', 'rb') as data:
-    bucket.upload_fileobj(data, 'raf/sample.png')
+# with open('sample.png', 'rb') as data:
+#     bucket.upload_fileobj(data, 'raf/sample.png')
