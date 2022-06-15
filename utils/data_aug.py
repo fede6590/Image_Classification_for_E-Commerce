@@ -29,11 +29,11 @@ def create_data_aug_layer(data_aug_layer):
     # looking at the code in `scripts/train.py`
     # TODO
     # Append the data augmentation layers on this list
-    random_flip = keras.layers.RandomFlip(**data_aug_layer['random_flip'])
-    random_rotation = keras.layers.RandomRotation(**data_aug_layer['random_rotation'])
-    random_zoom = keras.layers.RandomZoom(**data_aug_layer['random_zoom'])
+    rand_flip = keras.layers.RandomFlip(**data_aug_layer['random_flip'])
+    rand_rotation = keras.layers.RandomRotation(**data_aug_layer['random_rotation'])
+    rand_zoom = keras.layers.RandomZoom(**data_aug_layer['random_zoom'])
 
-    data_aug_layers = [random_flip, random_rotation, random_zoom]
+    data_aug_layers = [rand_flip, rand_rotation, rand_zoom]
 
     # Return a keras.Sequential model having the the new layers created
     # Assign to `data_augmentation` variable

@@ -18,7 +18,7 @@ class TestUtils(unittest.TestCase):
                 "weights": "imagenet",
                 "input_shape": [224, 224, 3],
                 "classes": 56,
-                "droput_rate": 0.8,
+                "dropout_rate": 0.8,
                 "data_aug_layer": {
                     "random_flip": {"mode": "horizontal"},
                     "random_rotation": {"factor": 0.1},

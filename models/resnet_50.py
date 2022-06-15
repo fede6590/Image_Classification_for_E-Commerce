@@ -91,7 +91,7 @@ def create_model(
         # Resnet50 already has a preprocessing function you must use here
         # See keras.applications.resnet50.preprocess_input()
         # TODO
-        preprocessing = keras.applications.resnet50.preprocess_input(data_augmentation)
+        preprocessing = keras.applications.resnet50.preprocess_input(x)
         x = preprocessing(x)
 
         # Create the corresponding core model using
