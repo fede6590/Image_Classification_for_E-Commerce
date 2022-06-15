@@ -35,6 +35,7 @@ The resulting directory structure should look like this:
 import argparse
 import os
 import pandas as pd
+from tqdm import tqdm
 
 
 def parse_args():
@@ -91,13 +92,11 @@ def main(data_folder, labels, output_data_folder):
     #      use `os.link()` to avoid wasting disk space with duplicated files
     # TODO
     labels = pd.read_csv(labels)
-    for _, img in labels.iterrows():
 
+    for _, img in tqdm(labels.iterrows()):
         path = os.path.join(img["subset"], img["class"])
-
-        if not os.path.exists(os.path.join(output_data_folder, path)):
-            os.makedirs(os.path.join(output_data_folder, path))
-            
+        os.makedirs(os.path.join(output_data_folder, path), exist_ok=True)    
+                
         if not os.path.isfile(os.path.join(output_data_folder, path, img['img_name'])):
             os.link(os.path.join(data_folder, img['img_name']), os.path.join(output_data_folder, path, img['img_name']))
 
