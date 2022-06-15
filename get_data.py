@@ -19,11 +19,13 @@ bucket = s3.Bucket('anyoneai-ay22-01')
 for file in bucket.objects.all():
     print(file)
 
+# creating data folder
+if not os.path.exists('data'):
+    os.makedirs('data')
+
 # download the training dataset
-with open('training_image_set.tgz', 'wb') as data:
-    if not os.path.exists('data'):
-        os.makedirs('data')
-    bucket.download_fileobj('data/training-datasets/car_ims.tgz', data)
+with open('data/training_image_set.tgz', 'wb') as data:
+    bucket.download_fileobj('training-datasets/car_ims.tgz', data)
 
 # extracting (to execute in terminal: tar zxvf filename)
 import tarfile
@@ -32,8 +34,8 @@ images.extractall()
 images.close()
     
 # download the dataset labels
-with open('car_dataset_labels.csv', 'wb') as data:
-    bucket.download_fileobj('data/training-datasets/car_dataset_labels.csv', data)
+with open('data/car_dataset_labels.csv', 'wb') as data:
+    bucket.download_fileobj('training-datasets/car_dataset_labels.csv', data)
 
 # upload a file
 with open('sample.png', 'rb') as data:
