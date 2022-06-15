@@ -39,7 +39,7 @@ def load_config(config_file_path):
     """
     # TODO
     # Load config here and assign to `config` variable
-    with open('config_file_path', 'r') as stream:
+    with open(config_file_path, 'r') as stream:
         try:
             config = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
