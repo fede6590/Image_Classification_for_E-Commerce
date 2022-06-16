@@ -27,8 +27,18 @@ $ docker run --rm --net host -it \
     bash
 ```
 
+Use sudo to run on AWS Server:
 ```bash
 $ docker run --rm --net host --gpus all -it \
+    -v $(pwd):/home/app/src \
+    --workdir /home/app/src \
+    s05_project \
+    bash
+```
+
+To access as a root:
+```bash
+docker run --rm --net host --gpus all -u 0 -it \
     -v $(pwd):/home/app/src \
     --workdir /home/app/src \
     s05_project \

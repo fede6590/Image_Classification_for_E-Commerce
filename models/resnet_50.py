@@ -111,14 +111,14 @@ def create_model(
         # Add a single dropout layer for regularization, use
         # keras.layers.Dropout()
         # TODO
-        regularization = keras.layers.Dropout(rate=dropout_rate)
+        regularization = keras.layers.Dropout(dropout_rate)
         x = regularization(x)
 
         # Add the classification layer here, use keras.layers.Dense() and
         # `classes` parameter
         # Assign it to `outputs` variable
         # TODO
-        outputs = keras.layers.Dense(units=classes, activation='softmax')(x)
+        outputs = keras.layers.Dense(classes, activation='softmax')(x)
 
         # Now you have all the layers in place, create a new model
         # Use keras.Model()
