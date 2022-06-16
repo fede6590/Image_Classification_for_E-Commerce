@@ -36,7 +36,7 @@ $ docker run --rm --net host --gpus all -it \
     bash
 ```
 
-To access as a root:
+To access as root:
 ```bash
 docker run --rm --net host --gpus all -u 0 -it \
     -v $(pwd):/home/app/src \

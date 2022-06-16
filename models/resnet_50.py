@@ -133,7 +133,6 @@ def create_model(
         # finetuned model, see how to do this using keras
         # Assign it to `model` variable
         # TODO
-
         model = keras.models.load_model(weights)
 
     return model

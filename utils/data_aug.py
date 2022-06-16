@@ -42,7 +42,7 @@ def create_data_aug_layer(data_aug_layer):
         rand_zoom = keras.layers.RandomZoom(**data_aug_layer['random_zoom'])
         data_augmentation.append(rand_zoom)
     if 'random_contrast' in data_aug_layer:
-        rand_contrast = keras.layers.RandomContrast(**data_aug_layer['random_zoom'])
+        rand_contrast = keras.layers.RandomContrast(**data_aug_layer['random_contrast'])
         data_augmentation.append(rand_contrast)
 
     # Return a keras.Sequential model having the the new layers created
