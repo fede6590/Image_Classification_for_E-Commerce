@@ -24,7 +24,7 @@ model:
             width_factor: 0.2
         random_contrast:
             factor: 0.1
-    regularizer: 'l1_l2'
+    regularizer: 'l2'
 
 compile:
     optimizer:
@@ -37,7 +37,7 @@ compile:
     metrics: ["accuracy"]
 
 fit:
-    epochs: 50
+    epochs: 40
     callbacks:
         model_checkpoint:
             # filepath: "/home/app/src/experiments/exp_000/model.{epoch:02d}-{val_loss:.4f}.h5"
