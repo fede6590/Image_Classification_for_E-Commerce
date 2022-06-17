@@ -45,7 +45,7 @@ fit:
             save_best_only: True
         early_stopping: 
             monitor: 'val_loss'
-            patience: 2
+            patience: 5
             restore_best_weights: True
         tensor_board:
             log_dir: "/home/app/src/experiments/exp_000/logs"
