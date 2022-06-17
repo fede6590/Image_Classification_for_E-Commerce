@@ -12,24 +12,25 @@ model:
     weights: "imagenet"
     input_shape: [224, 224, 3]
     classes: 196
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     data_aug_layer:
         random_flip:
             mode: "horizontal"
         random_rotation:
-            factor: 0.2
+            factor: 0.1
+            fill_mode: 'constant'
             fill_value: 125
         random_zoom:
-            height_factor: 0.2
-            width_factor: 0.2
+            height_factor: 0.1
+            width_factor: 0.1
         random_contrast:
             factor: 0.1
-    regularizer: 'l2'
+    regularizer: 'l1_l2'
 
 compile:
     optimizer:
         adam:
-            learning_rate: 0.005
+            learning_rate: 0.05
             epsilon: 0.1
             amsgrad: False
 
