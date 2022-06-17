@@ -1,5 +1,6 @@
 import os
 import yaml
+from tensorflow import keras
 
 def validate_config(config):
     """
@@ -75,7 +76,7 @@ def get_class_names(config):
                 'FIAT 500 Abarth 2012', 'Jeep Patriot SUV 2012',
                 'Acura Integra Type R 2001', ...]
     """
-    return os.listdir(os.path.join(config["data"]["directory"]))
+    return sorted(os.listdir(os.path.join(config["data"]["directory"])))
 
 
 def walkdir(folder):
@@ -143,7 +144,14 @@ def predict_from_folder(folder, model, input_size, class_names):
     # the highest probability and use that to get the corresponding class
     # name from `class_names` list.
     # TODO
-    predictions = None
-    labels = None
+    predictions = []
+    labels = []
+
+    for path, img in  walkdir(folder):
+        img = keras.utils.load_img(os.path.join(path, img))
+        img = keras.utils.img_to_array(img)
+        predictions.append(model.predict(img))
+        _, label = os.path.split(path)
+        labels.append(label)
 
     return predictions, labels

@@ -30,7 +30,7 @@ def get_vehicle_coordinates(img):
     Parameters
     ----------
     img : numpy.ndarray
-        Image in RGB format.
+        Image in RGB format. ¿ERROR? ¿BGR?
 
     Returns
     -------
