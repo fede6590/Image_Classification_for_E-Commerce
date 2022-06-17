@@ -30,7 +30,7 @@ compile:
     optimizer:
         adam:
             learning_rate: 0.01
-            epsilon: 0.1
+            epsilon: 1
             amsgrad: False
 
     loss: "categorical_crossentropy"
@@ -45,7 +45,7 @@ fit:
             save_best_only: True
         early_stopping: 
             monitor: 'val_loss'
-            patience: 5
+            patience: 6
             restore_best_weights: True
         tensor_board:
             log_dir: "/home/app/src/experiments/exp_000/logs"
