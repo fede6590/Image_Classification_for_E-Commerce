@@ -27,7 +27,7 @@ if not os.path.exists('data'):
 with open('data/training_image_set.tgz', 'wb') as data:
     bucket.download_fileobj('training-datasets/car_ims.tgz', data)
 
-# extracting (to execute in terminal: tar zxvf filename)
+# extracting or execute in terminal: tar zxvf filename (needed in AWS server)
 import tarfile
 images = tarfile.open('data/training_image_set.tgz', 'r')
 images.extractall()

@@ -1,7 +1,7 @@
 from utils.data_aug import create_data_aug_layer
 
 import tensorflow as tf
-from tensorflow import keras
+from tensorflow import keras# Supported regularizer algorithms
 
 
 def create_model(
@@ -10,6 +10,7 @@ def create_model(
     dropout_rate: float = 0.0,
     data_aug_layer: dict = None,
     classes: int = None,
+    regularizer: str = None
 ):
     """
     Creates and loads the Resnet50 model we will use for our experiments.
@@ -111,14 +112,26 @@ def create_model(
         # Add a single dropout layer for regularization, use
         # keras.layers.Dropout()
         # TODO
-        regularization = keras.layers.Dropout(dropout_rate)
-        x = regularization(x)
+        dropout = keras.layers.Dropout(dropout_rate)
+        x = dropout(x)
 
         # Add the classification layer here, use keras.layers.Dense() and
         # `classes` parameter
         # Assign it to `outputs` variable
         # TODO
-        outputs = keras.layers.Dense(classes, activation='softmax')(x)
+        if regularizer is not None:
+            outputs = keras.layers.Dense(
+                classes,
+                kernel_regularizer = regularizer,
+                activation = 'softmax'
+                )
+        else:
+            outputs = keras.layers.Dense(
+                classes,
+                activation='softmax'
+                )
+
+        outputs = outputs(x)
 
         # Now you have all the layers in place, create a new model
         # Use keras.Model()
