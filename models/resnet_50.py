@@ -106,7 +106,7 @@ def create_model(
             include_top=False,
             pooling='avg'
         )
-        core_model.trainable = False
+        # core_model.trainable = False
         x = core_model(x)
 
         # Add a single dropout layer for regularization, use
