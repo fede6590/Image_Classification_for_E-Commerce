@@ -12,27 +12,27 @@ model:
     weights: "imagenet"
     input_shape: [224, 224, 3]
     classes: 196
-    dropout_rate: 0.2
+    dropout_rate: 0.1
     data_aug_layer:
         random_flip:
             mode: "horizontal"
         random_rotation:
-            factor: 0.2
+            factor: 0.1
             fill_mode: 'constant'
             fill_value: 125
         random_zoom:
-            height_factor: 0.2
-            width_factor: 0.2
+            height_factor: 0.1
+            width_factor: 0.1
         random_contrast:
-            factor: 0.2
-    regularizer: 'l1_l2'
+            factor: 0.1
+    # regularizer: 'l2'
 
 compile:
     optimizer:
         adam:
-            learning_rate: 0.001
-            epsilon: 0.1
-            amsgrad: False
+            # learning_rate: 0.01
+            epsilon: 0.05
+            # amsgrad: False
 
     loss: "categorical_crossentropy"
     metrics: ["accuracy"]

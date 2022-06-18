@@ -1,3 +1,5 @@
+
+
 """
 This script will be used to remove noisy background from cars images to
 improve the quality of our data and get a better model.

@@ -1,3 +1,7 @@
+import cv2
+from detectron2 import model_zoo
+from detectron2.engine import DefaultPredictor
+from detectron2.config import get_cfg
 
 # Load here your Detection model
 # The chosen detector model is "COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml"
@@ -39,6 +43,12 @@ def get_vehicle_coordinates(img):
         Also known as (x1, y1, x2, y2).
     """
     # TODO
+    cfg = get_cfg()
+    cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml"))
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5
+    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+    predictor = DefaultPredictor(cfg)
+    outputs = predictor(im)
     box_coordinates = None
 
     return box_coordinates
