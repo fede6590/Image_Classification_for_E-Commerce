@@ -30,7 +30,7 @@ model:
 compile:
     optimizer:
         adam:
-            # learning_rate: 0.01
+            learning_rate: 0.001
             epsilon: 0.05
             # amsgrad: False
 
@@ -38,7 +38,7 @@ compile:
     metrics: ["accuracy"]
 
 fit:
-    epochs: 100
+    epochs: 30
     callbacks:
         model_checkpoint:
             filepath: "/home/app/src/experiments/files/exp_003/model.{epoch:02d}-{val_loss:.4f}.h5"
