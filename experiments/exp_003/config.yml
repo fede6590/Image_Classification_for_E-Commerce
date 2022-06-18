@@ -38,15 +38,15 @@ compile:
     metrics: ["accuracy"]
 
 fit:
-    epochs: 40
+    epochs: 50
     callbacks:
         model_checkpoint:
-            # filepath: "/home/app/src/experiments/exp_000/model.{epoch:02d}-{val_loss:.4f}.h5"
-            filepath: "/home/app/src/experiments/files/exp_003/model.better.h5"
+            filepath: "/home/app/src/experiments/exp_000/model.{epoch:02d}-{val_loss:.4f}.h5"
+            # filepath: "/home/app/src/experiments/files/exp_003/model.better.h5"
             save_best_only: True
         early_stopping: 
             monitor: 'val_loss'
-            patience: 6
+            patience: 8
             restore_best_weights: True
         tensor_board:
             log_dir: "/home/app/src/experiments/exp_003/logs"
