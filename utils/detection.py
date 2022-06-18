@@ -52,8 +52,9 @@ def get_vehicle_coordinates(img):
    instances = out["instances"]
 
    if (2 in instances.pred_classes) | (7 in instances.pred_classes):
-      max_area = torch.argmax(instances.pred_boxes.area()).item()
-      box_coordinates = instances.pred_boxes.tensor[max_area].to(torch.int).tolist()
+      selected = instances[(instances.pred_classes == 2) | (instances.pred_classes == 7)]
+      max_area = torch.argmax(selected.pred_boxes.area()).item()
+      box_coordinates = selected.pred_boxes.tensor[max_area].to(torch.int).tolist()
    else:
       height, width = img.shape[:2]
       box_coordinates = [0, 0, width, height]
