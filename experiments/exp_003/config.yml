@@ -6,13 +6,13 @@ data:
     label_mode: "categorical"
     validation_split: 0.2
     image_size: [224, 224]
-    batch_size: 32
+    batch_size: 16
 
 model:
     weights: "imagenet"
     input_shape: [224, 224, 3]
     classes: 196
-    dropout_rate: 0.2
+    dropout_rate: 0.3
     data_aug_layer:
         random_flip:
             mode: "horizontal"
@@ -20,18 +20,18 @@ model:
             factor: 0.1
             fill_mode: 'constant'
             fill_value: 125
-        random_zoom:
-            height_factor: 0.1
-            width_factor: 0.1
+        # random_zoom:
+            # height_factor: 0.1
+            # width_factor: 0.1
         random_contrast:
             factor: 0.1
-    regularizer: 'l2'
+    regularizer: 'l1'
 
 compile:
     optimizer:
         adam:
-            learning_rate: 0.005
-            epsilon: 0.1
+            learning_rate: 0.01
+            epsilon: 1
             amsgrad: False
 
     loss: "categorical_crossentropy"
@@ -42,12 +42,12 @@ fit:
     callbacks:
         model_checkpoint:
             # filepath: "/home/app/src/experiments/exp_000/model.{epoch:02d}-{val_loss:.4f}.h5"
-            filepath: "/home/app/src/experiments/files/exp_002/model.better.h5"
+            filepath: "/home/app/src/experiments/files/exp_003/model.better.h5"
             save_best_only: True
         early_stopping: 
             monitor: 'val_loss'
             patience: 6
             restore_best_weights: True
         tensor_board:
-            log_dir: "/home/app/src/experiments/exp_002/logs"
+            log_dir: "/home/app/src/experiments/exp_003/logs"
 

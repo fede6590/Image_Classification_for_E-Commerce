@@ -32,18 +32,29 @@ def create_data_aug_layer(data_aug_layer):
 
     data_augmentation = []
 
-    if 'random_flip' in data_aug_layer:
-        rand_flip = keras.layers.RandomFlip(**data_aug_layer['random_flip'])
-        data_augmentation.append(rand_flip)
-    if 'random_rotation' in data_aug_layer:
-        rand_rotation = keras.layers.RandomRotation(**data_aug_layer['random_rotation'])
-        data_augmentation.append(rand_rotation)
-    if 'random_zoom' in data_aug_layer:
-        rand_zoom = keras.layers.RandomZoom(**data_aug_layer['random_zoom'])
-        data_augmentation.append(rand_zoom)
-    if 'random_contrast' in data_aug_layer:
-        rand_contrast = keras.layers.RandomContrast(**data_aug_layer['random_contrast'])
-        data_augmentation.append(rand_contrast)
+    # Supported data augmentations
+    DATA_AUGMENTATIONS = {
+    "random_flip": keras.layers.RandomFlip,
+    "random_rotation": keras.layers.RandomRotation,
+    "random_zoom": keras.layers.RandomZoom,
+    "random_contrast": keras.layers.RandomContrast,
+    }
+
+    for type, params in data_aug_layer.items():
+        data_augmentation.append(DATA_AUGMENTATIONS[type](**params))
+
+    # if 'random_flip' in data_aug_layer:
+    #     rand_flip = keras.layers.RandomFlip(**data_aug_layer['random_flip'])
+    #     data_augmentation.append(rand_flip)
+    # if 'random_rotation' in data_aug_layer:
+    #     rand_rotation = keras.layers.RandomRotation(**data_aug_layer['random_rotation'])
+    #     data_augmentation.append(rand_rotation)
+    # if 'random_zoom' in data_aug_layer:
+    #     rand_zoom = keras.layers.RandomZoom(**data_aug_layer['random_zoom'])
+    #     data_augmentation.append(rand_zoom)
+    # if 'random_contrast' in data_aug_layer:
+    #     rand_contrast = keras.layers.RandomContrast(**data_aug_layer['random_contrast'])
+    #     data_augmentation.append(rand_contrast)
 
     # Return a keras.Sequential model having the the new layers created
     # Assign to `data_augmentation` variable
