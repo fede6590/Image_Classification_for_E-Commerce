@@ -51,7 +51,7 @@ def get_vehicle_coordinates(img):
    out = DET_MODEL(img)
    instances = out["instances"]
 
-   if (2 in instances.pred_classes == 2) or (7 in instances.pred_classes):
+   if (2 in instances.pred_classes) | (7 in instances.pred_classes):
       max_area = torch.argmax(instances.pred_boxes.area()).item()
       box_coordinates = instances.pred_boxes.tensor[max_area].to(torch.int).tolist()
    else:
