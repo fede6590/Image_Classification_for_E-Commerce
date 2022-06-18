@@ -10,7 +10,8 @@ def create_model(
     dropout_rate: float = 0.0,
     data_aug_layer: dict = None,
     classes: int = None,
-    regularizer: str = None
+    regularizer: str = None,
+    trainable: bool = False
 ):
     """
     Creates and loads the Resnet50 model we will use for our experiments.
@@ -106,7 +107,7 @@ def create_model(
             include_top=False,
             pooling='avg'
         )
-        # core_model.trainable = False
+        core_model.trainable = trainable
         x = core_model(x)
 
         # Add a single dropout layer for regularization, use

@@ -1,4 +1,5 @@
-
+from utils.utils import walkdir
+import cv2
 
 """
 This script will be used to remove noisy background from cars images to
@@ -60,6 +61,8 @@ def main(data_folder, output_data_folder):
     #      to create additional subfolders following the original
     #      `data_folder` structure.
     # TODO
+    for path, img in walkdir(data_folder):
+        img = cv2.imread(img)
 
 
 if __name__ == "__main__":
