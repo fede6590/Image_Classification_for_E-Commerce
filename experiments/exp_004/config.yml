@@ -31,8 +31,8 @@ model:
 compile:
     optimizer:
         adam:
-            learning_rate: 0.001
-            epsilon: 0.05
+            learning_rate: 0.01
+            epsilon: 0.1
             amsgrad: True
 
     loss: "categorical_crossentropy"
