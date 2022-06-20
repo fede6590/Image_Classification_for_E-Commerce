@@ -1,6 +1,7 @@
 import os
 import yaml
 from tensorflow import keras, image
+import numpy as np
 
 def validate_config(config):
     """
@@ -149,8 +150,9 @@ def predict_from_folder(folder, model, input_size, class_names):
 
     for path, img in  walkdir(folder):
         img = os.path.join(path, img)
-        # img = image.resize(img, input_size)
-        img = keras.utils.load_img(img, target_size=input_size)
+        img = image.resize(img, input_size)
+        img = np.reshape(img, (-1, input_size[0], input_size[1], 3))
+        img = keras.utils.load_img(img)
         img = keras.utils.img_to_array(img)
         proba = model.predict(img)
         pred = max(zip(proba, class_names))
