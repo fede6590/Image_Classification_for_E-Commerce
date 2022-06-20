@@ -148,8 +148,9 @@ def predict_from_folder(folder, model, input_size, class_names):
     labels = []
 
     for path, img in  walkdir(folder):
-        img = keras.utils.load_img(os.path.join(path, img))
+        img = os.path.join(path, img)
         img = image.resize(img, input_size)
+        img = keras.utils.load_img(img)
         img = keras.utils.img_to_array(img)
         proba = model.predict(img)
         pred = max(zip(proba, class_names))
