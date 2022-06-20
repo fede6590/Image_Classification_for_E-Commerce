@@ -1,5 +1,8 @@
 from utils.utils import walkdir
+from utils.detection import get_vehicle_coordinates
+import os
 import cv2
+import tqdm
 
 """
 This script will be used to remove noisy background from cars images to
@@ -61,8 +64,18 @@ def main(data_folder, output_data_folder):
     #      to create additional subfolders following the original
     #      `data_folder` structure.
     # TODO
-    for path, img in walkdir(data_folder):
-        img = cv2.imread(img)
+    for path, file in walkdir(data_folder):
+        path, img_class = os.path.split(path)
+        _, img_subset = os.path.split(path)
+        output = os.path.join(output_data_folder, img_subset, img_class)
+        os.makedirs(output, exist_ok=True)
+        
+        if not os.path.isfile(os.path.join(output, file)):
+            img = os.path.join(path, file)
+            img = cv2.imread(img)
+            box = get_vehicle_coordinates(img)
+            img = img[box[1]:box[3], box[0]:box[2]]
+            cv2.imwrite(os.path.join(output, file), img)
 
 
 if __name__ == "__main__":

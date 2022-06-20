@@ -15,6 +15,7 @@ config = get_cfg()
 config.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml"))
 config.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
 config.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5
+# config.MODEL.DEVICE = "cpu" # Unmute to test locally (Default: gpu)
 
 DET_MODEL = DefaultPredictor(config)
 
@@ -39,7 +40,7 @@ def get_vehicle_coordinates(img):
    Parameters
    ----------
    img : numpy.ndarray
-      Image in RGB format. ¿ERROR? ¿BGR?
+      Image in RGB format.
 
    Returns
    -------
