@@ -154,7 +154,7 @@ def predict_from_folder(folder, model, input_size, class_names):
         img = keras.utils.img_to_array(img)
         img = np.array([img])
         proba = model.predict(img)
-        pred = max(zip(proba, class_names))
+        pred = max(zip(proba, class_names)) # OTHER: argmax => index then class_names[argmax(proba)]
         predictions.append(pred[1])
 
         _, label = os.path.split(path)
