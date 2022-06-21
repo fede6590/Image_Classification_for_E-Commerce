@@ -148,16 +148,23 @@ def predict_from_folder(folder, model, input_size, class_names):
     predictions = []
     labels = []
 
+    count=0
     for path, img in  walkdir(folder):
         img = os.path.join(path, img)
-        img = keras.utils.load_img(img,target_size=input_size)
+        img = keras.utils.load_img(img, target_size=input_size)
         img = keras.utils.img_to_array(img)
         img = np.array([img])
         proba = model.predict(img)
+        print(proba)
         pred = max(zip(proba, class_names)) # OTHER: argmax => index then class_names[argmax(proba)]
         predictions.append(pred[1])
+        print(predictions)
 
         _, label = os.path.split(path)
         labels.append(label)
+        print(labels)
+        count+=1
+        if count >= 2:
+            break
 
     return predictions, labels
