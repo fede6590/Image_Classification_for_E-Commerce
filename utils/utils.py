@@ -151,7 +151,6 @@ def predict_from_folder(folder, model, input_size, class_names):
     for path, img in  walkdir(folder):
         img = os.path.join(path, img)
         img = keras.utils.load_img(img,target_size=input_size)
-        # img = keras.preprocessing.image.smart_resize(img, input_size)
         img = keras.utils.img_to_array(img)
         img = np.array([img])
         proba = model.predict(img)
