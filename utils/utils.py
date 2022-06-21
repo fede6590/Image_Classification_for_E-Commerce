@@ -77,7 +77,7 @@ def get_class_names(config):
                 'FIAT 500 Abarth 2012', 'Jeep Patriot SUV 2012',
                 'Acura Integra Type R 2001', ...]
     """
-    return os.listdir(os.path.join(config["data"]["directory"]))
+    return sorted(os.listdir(os.path.join(config["data"]["directory"])))
 
 
 def walkdir(folder):
