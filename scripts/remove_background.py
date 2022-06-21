@@ -1,6 +1,6 @@
 from utils.utils import walkdir
 from utils.detection import get_vehicle_coordinates
-import os, cv2, stat, tqdm
+import os, cv2
 
 """
 This script will be used to remove noisy background from cars images to
