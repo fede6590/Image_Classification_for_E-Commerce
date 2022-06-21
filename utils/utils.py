@@ -148,7 +148,6 @@ def predict_from_folder(folder, model, input_size, class_names):
     predictions = []
     labels = []
 
-    count=0
     for path, img in  walkdir(folder):
         img = os.path.join(path, img)
         img = keras.utils.load_img(img, target_size=input_size)
