@@ -63,8 +63,8 @@ def main(data_folder, output_data_folder):
     #      `data_folder` structure.
     # TODO
     for path, file in walkdir(data_folder):
-        path, img_class = os.path.split(path)
-        _, img_subset = os.path.split(path)
+        head, img_class = os.path.split(path)
+        _, img_subset = os.path.split(head)
         output = os.path.join(output_data_folder, img_subset, img_class)
         os.makedirs(output, exist_ok=True)
         

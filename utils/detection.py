@@ -1,4 +1,4 @@
-import torch, cv2
+import torch
 from detectron2 import model_zoo
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
@@ -57,7 +57,6 @@ def get_vehicle_coordinates(img):
       max_area = torch.argmax(selected.pred_boxes.area()).item()
       box_coordinates = selected.pred_boxes.tensor[max_area].to(torch.int).tolist()
    else:
-      img = cv2.imread(img)
       height, width = img.shape[:2]
       box_coordinates = [0, 0, width, height]
 
