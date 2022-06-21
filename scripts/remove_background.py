@@ -67,7 +67,7 @@ def main(data_folder, output_data_folder):
         _, img_subset = os.path.split(path)
         output = os.path.join(output_data_folder, img_subset, img_class)
         os.makedirs(output, exist_ok=True)
-        os.chmod(output, stat.S_IWUSR)
+        os.chmod(output, stat.S_IWOTH)
         
         if not os.path.isfile(os.path.join(output, file)):
             img = os.path.join(path, file)
