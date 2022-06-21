@@ -173,8 +173,8 @@ def predict_from_folder(folder, model, input_size, class_names):
         if count >= 100:
             break
 
-        print(predictions)
-        print(labels)
+    print(predictions)
+    print(labels)
 
 
     return predictions, labels
