@@ -159,11 +159,12 @@ def predict_from_folder(folder, model, input_size, class_names):
         
         print(proba)
         
-        pred = max(zip(proba, class_names)) # OTHER: argmax => index then class_names[argmax(proba)]
-        
+        # pred = max(zip(proba, class_names)) # OTHER: argmax => index then class_names[argmax(proba)]
+        pred = class_names[np.argmax(proba)]
+
         print(pred)
         
-        predictions.append(pred[1])
+        predictions.append(pred)
         _, label = os.path.split(path)
         labels.append(label)
 
