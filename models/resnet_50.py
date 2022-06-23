@@ -1,7 +1,7 @@
 from utils.data_aug import create_data_aug_layer
 
 import tensorflow as tf
-from tensorflow import keras# Supported regularizer algorithms
+from tensorflow import keras
 
 
 def create_model(
