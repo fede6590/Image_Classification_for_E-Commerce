@@ -51,17 +51,12 @@ def main(data_folder, output_data_folder):
         Full path to the directory in which we will store the resulting
         cropped images.
     """
-    # For this function, you must:
-    #   1. Iterate over each image in `data_folder`, you can
-    #      use Python `os.walk()` or `utils.waldir()``
-    #   2. Load the image
-    #   3. Run the detector and get the vehicle coordinates, use
-    #      utils.detection.get_vehicle_coordinates() for this task
-    #   4. Extract the car from the image and store it in
-    #      `output_data_folder` with the same image name. You may also need
-    #      to create additional subfolders following the original
-    #      `data_folder` structure.
-    # TODO
+    # Iterate over each image in `data_folder`
+    # Load the image
+    # Run the detector and get the vehicle coordinates
+    # Extract the car from the image and store it in
+    # `output_data_folder` with the same image name
+
     for path, file in walkdir(data_folder):
         head, img_class = os.path.split(path)
         _, img_subset = os.path.split(head)

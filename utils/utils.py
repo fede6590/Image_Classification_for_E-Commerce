@@ -39,8 +39,8 @@ def load_config(config_file_path):
     config : dict
         Experiment settings as a Python dict.
     """
-    # TODO
-    # Load config here and assign to `config` variable
+
+    # Load config and assign to `config` variable
     with open(config_file_path, 'r') as stream:
         try:
             config = yaml.safe_load(stream)
@@ -137,14 +137,7 @@ def predict_from_folder(folder, model, input_size, class_names):
     # Use keras.utils.load_img() to correctly load the image and
     # keras.utils.img_to_array() to convert it to the format needed
     # before sending it to our model.
-    # You can use os.walk() or walkdir() to iterate over the files in the
-    # folder.
-    # Don't forget you must not return the raw model prediction. Model
-    # prediction will be a vector assigning probability scores to each
-    # class. You must take the position of the element in the vector with
-    # the highest probability and use that to get the corresponding class
-    # name from `class_names` list.
-    # TODO
+
     predictions = []
     labels = []
 

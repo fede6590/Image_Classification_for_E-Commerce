@@ -66,22 +66,15 @@ def create_model(
         predictions.
     """
 
-    # Create the model to be used for finetuning here!
+    # Create the model to be used for finetuning
     if weights == "imagenet":
         # Define the Input layer
-        # Assign it to `input` variable
-        # Use keras.layers.Input(), following this requirements:
-        #   1. layer dtype must be tensorflow.float32
-        # TODO
         input = keras.layers.Input(
             shape = input_shape,
             dtype = tf.float32
         )
 
-        # Create the data augmentation layers here and add to the model next
-        # to the input layer
-        # If no data augmentation was used, skip this
-        # TODO
+        # Create the data augmentation layers
         if data_aug_layer is not None:
             data_augmentation = create_data_aug_layer(data_aug_layer)
             x = data_augmentation(input)
@@ -89,19 +82,9 @@ def create_model(
             x = input
 
         # Add a layer for preprocessing the input images values
-        # E.g. change pixels interval from [0, 255] to [0, 1]
-        # Resnet50 already has a preprocessing function you must use here
-        # See keras.applications.resnet50.preprocess_input()
-        # TODO
         x = keras.applications.resnet50.preprocess_input(x)
 
-        # Create the corresponding core model using
-        # keras.applications.ResNet50()
-        # The model created here must follow this requirements:
-        #   1. Use imagenet weights
-        #   2. Drop top layer (imagenet classification layer)
-        #   3. Use Global average pooling as model output
-        # TODO
+        # Create the corresponding core model
         core_model = keras.applications.ResNet50(
             weights=weights,
             include_top=False,
@@ -110,16 +93,11 @@ def create_model(
         core_model.trainable = trainable
         x = core_model(x)
 
-        # Add a single dropout layer for regularization, use
-        # keras.layers.Dropout()
-        # TODO
+        # Add a single dropout layer for regularization
         dropout = keras.layers.Dropout(dropout_rate)
         x = dropout(x)
 
-        # Add the classification layer here, use keras.layers.Dense() and
-        # `classes` parameter
-        # Assign it to `outputs` variable
-        # TODO
+        # Add the classification layer
         if regularizer is not None:
             outputs = keras.layers.Dense(
                 classes,
@@ -134,19 +112,13 @@ def create_model(
 
         outputs = outputs(x)
 
-        # Now you have all the layers in place, create a new model
-        # Use keras.Model()
-        # Assign it to `model` variable
-        # TODO
+        # Create a new model
         model = keras.Model(
             inputs = input, 
             outputs = outputs
         )
     else:
-        # For this particular case we want to load our already defined and
-        # finetuned model, see how to do this using keras
-        # Assign it to `model` variable
-        # TODO
+        # Load an already defined and finetuned model
         model = keras.models.load_model(weights)
 
     return model

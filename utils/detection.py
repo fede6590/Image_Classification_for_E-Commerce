@@ -10,7 +10,7 @@ from detectron2.config import get_cfg
 # Detectron2 models
 # https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5.
 # Assign the loaded detection model to global variable DET_MODEL
-# TODO
+
 config = get_cfg()
 config.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml"))
 config.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
