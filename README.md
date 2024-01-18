@@ -1,7 +1,6 @@
-# AnyoneAI - Project V
-## Vehicle classification from images
+# Vehicle classification from images
 
-### 1. Install
+## 1. Install
 
 You can use `Docker` to easily install all the needed packages and libraries. Two Dockerfiles are provided for both CPU and GPU support.
 
@@ -17,7 +16,7 @@ $ docker build -t s05_project -f docker/Dockerfile .
 $ docker build -t s05_project -f docker/Dockerfile_gpu .
 ```
 
-#### Run Docker
+### Run Docker
 
 ```bash
 $ docker run --rm --net host -it \
@@ -45,13 +44,13 @@ docker run --rm --net host --gpus all -u 0 -it \
     bash
 ```
 
-#### Run Unit test
+### Run Unit test
 
 ```bash
 $ pytest tests/
 ```
 
-### 2. Prepare your data
+## 2. Prepare your data
 
 As a first step, we must extract the images from the file `car_ims.tgz` and put them inside the `data/` folder. Also place the annotations file (`car_dataset_labels.csv`) in the same folder. It should look like this:
 
@@ -68,7 +67,7 @@ Then, you should be able to run the script `scripts/prepare_train_test_dataset.p
 
 You will have to complete the missing code in this script to make it work.
 
-### 3. Train your first CNN (Resnet50)
+## 3. Train your first CNN (Resnet50)
 
 After we have our images in place, it's time to create our first CNN and train it on our dataset. To do so, we will make use of `scripts/train.py`.
 
@@ -102,7 +101,7 @@ The script `scripts/train.py` is already coded but it makes use of external func
 - `resnet50.create_model()`: Returns a CNN ready for training or for evaluation, depending on the input parameters received. Part of coding this functions will require you to create the layers of your first CNN with Keras.
 - `data_aug.create_data_aug_layer()`: Used by `resnet50.create_model()`. This function adds data augmentation layers to our model that will be used only while training.
 
-### 4. Evaluate your trained model
+## 4. Evaluate your trained model
 
 After running many experiments and having a potentially good model trained. It's time to check its performance on our test dataset and prepare a nice report with some evaluation metrics.
 
@@ -110,7 +109,7 @@ We will use the notebook `notebooks/Model Evaluation.ipynb` to do it. As you may
 
 Particularly, you will have to complete `utils.predict_from_folder()` function (used in the notebook), which contains the main logic to get predictions from our trained model.
 
-### 5. Improve classification by removing noisy background
+## 5. Improve classification by removing noisy background
 
 As we already saw in the `notebooks/EDA.ipynb` file. Most of the images have a of background which may affect our model learning during the training process.
 
